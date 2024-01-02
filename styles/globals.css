@@ -2,26 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+input, textarea, select{
+  @apply border flex flex-col border-gray-300 w-full rounded-sm px-1;
+  @apply mb-2;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+input:focus, textarea:focus, select:focus{
+  @apply border border-blue-900;
+}
+
+/* h1{
+  @apply text-blue-900 mb-2 text-xl;
+} */
+
+label{
+  @apply text-blue-900;
+}
+/* 
+.btn-primary{
+  @apply bg-primary rounded-sm px-4 py-1 text-white;
+}
+
+.btn-primary1{
+  @apply rounded-md bg-blue-800 text-white py-1 px-4 inline-block mt-2 mb-2;
+}
+
+.btn-primary1:hover{
+  transform: scale(1.01);
+} */
+
+
+
+table.table-basic {
+  @apply w-full mt-4;
+}
+
+table.table-basic thead tr td {
+  @apply text-sm text-gray-400;
+}
+
+table.table-basic tr td {
+  @apply border border-blue-300  p-1;
+}
+
+table.table-basic a{
+  @apply text-white bg-blue-900 text-sm py-1 px-2 rounded-md inline-flex gap-1 mr-1;
+}
+
+img{
+  max-height: 100%;
+}
+
+
+@media (max-width: 768px) {
+  input, textarea, select {
+    @apply mb-1; /* Adjust margin as needed */
+  }
+
+  h1 {
+    @apply text-xl; /* Adjust font size as needed */
+  }
+
+  table.table-basic {
+    @apply mt-2; /* Adjust margin as needed */
   }
 }
+@media (max-width: 480px) {
+  input, textarea, select {
+    @apply mb-1; /* Adjust margin as needed */
+  }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  h1 {
+    @apply text-xl; /* Adjust font size as needed */
+  }
+
+  table.table-basic {
+    @apply mt-2; /* Adjust margin as needed */
+  }
+
 }

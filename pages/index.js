@@ -5,30 +5,40 @@ import Featured from '@/components/Featured'
 import { Product } from '@/models/product'
 import { mongooseConnect } from '@/lib/mongoose'
 import NewProducts from '@/components/NewProducts'
+import BtnLink from '@/components/BtnLink'
+import { useEffect, useState } from "react";
+import styled from 'styled-components';
+import PBtn from '@/components/PBtn'
 
-const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({product}) {
-  console.log("product:", product);
+
+export default function Home({ fProduct, nProducts}) {
+  console.log('product:', fProduct);
+  console.log('product:', nProducts);
+
   return (
-    <div>
-      <Header/>
-      <Featured product={product}/>
-      <NewProducts/>
+    <div className='w-full'>
+      <Header />
+      <Featured product={fProduct} />
+      <NewProducts products={nProducts}/>
     </div>
-  )
+  );
 }
 
 export async function getServerSideProps() {
-
-   const featuredProduct = '658b0248a8f8536c6453f763';
-   await mongooseConnect();
-   const product = await Product.findById(featuredProduct);
+  const fProductId = '658b0248a8f8536c6453f763';
+  await mongooseConnect();
+  const fProduct = await Product.findById(fProductId);
+  const nProducts = await Product.find({}, null, {
+    sort: { _id: -1 },
+    limit: 10,
+  });
 
   return {
     props: {
-      // font: inter.toStyle()
-      product: JSON.parse(JSON.stringify(product))
+      fProduct: JSON.parse(JSON.stringify(fProduct)),
+      nProducts: JSON.parse(JSON.stringify(nProducts)),
+      products: JSON.parse(JSON.stringify(nProducts)),
     },
   };
 }

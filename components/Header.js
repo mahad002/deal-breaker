@@ -1,6 +1,8 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Center from "./Center";
+import { CartContext } from "./CartContext";
+import {useContext} from "react";
 
 // const SHeader = styled.header`
 //     // display: flex;
@@ -35,7 +37,7 @@ const SLogo = styled(Link)`
   color:#fff;
   text-decoration:none;
   position: relative;
-  z-index: 3;
+//   z-index: 3;
 `;
 const Wrap = styled.div`
   display: flex;
@@ -49,16 +51,23 @@ const NLink = styled(Link)`
     &:hover {
         color: #fff;
     }
+
+    @media screen and (max-width: 800px) {
+        
+    }
 `;
 
 const SNav = styled.nav`
     display: flex;
     gap: 16px;
     align-items: center;
+    @media screen and (max-width: 800px) {
+        
+    }
 `;
 
 export default function Header() {
-
+    const {cartProducts} = useContext(CartContext)
 
     return (
         <SHeader>
@@ -85,6 +94,9 @@ export default function Header() {
                         </NLink>
                         <NLink href={'/requests'}>
                             Requests
+                        </NLink>
+                        <NLink href={'/requests'}>
+                            Cart ({cartProducts.length})
                         </NLink>
                     </SNav>
                 </Wrap>

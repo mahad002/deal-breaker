@@ -1,4 +1,6 @@
+import { CartContextProvider } from "@/components/CartContext";
 import { createGlobalStyle } from "styled-components"
+import '@/styles/globals.css'
 
 const GlobalStyles = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
@@ -8,7 +10,8 @@ const GlobalStyles = createGlobalStyle`
     padding:0;
     box-sizing: border-box;
     color:#363537;
-    background-color:#f4f4f8;
+    background-color:#f0f0f0;
+    // width: 100%;
   }
 `;
 
@@ -16,6 +19,9 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyles/>
-      <Component {...pageProps} />
+      <CartContextProvider>
+        <Component {...pageProps} />
+      </CartContextProvider>
+      
     </>
 )}
